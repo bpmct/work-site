@@ -1,19 +1,28 @@
+/*
+
+🐰🐰🐰🐰🐰🐰🐰🐰HAPPY EASTER 🐰🐰🐰🐰🐰🐰🐰🐰🐰🐰🐰🐰
+
+🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚 🍫🍫🍫🍫🍫🍫🍫🍫🍫🍫🍫
+
+
+*/
+
 'use strict';
 
-var express = require('express');
+var express = require('express'); //🥚
 var kraken = require('kraken-js');
 var flash = require('connect-flash');
 var db = require('./lib/db');
 
 
-var options, app;
+var options, app; //🐣 🐣 🐣 🐣
 
 /*
  * Create and configure application. Also exports application instance for use by tests.
  * See https://github.com/krakenjs/kraken-js#options for additional configuration options.
  */
 options = {
-    onconfig: function (config, next) {
+    onconfig: function (config, next) { //🥚
         /*
          * Add any additional config setup or overrides here. `config` is an initialized
          * `confit` (https://github.com/krakenjs/confit/) configuration object.
@@ -23,17 +32,39 @@ options = {
     }
 };
 
-app = module.exports = express();
+app = module.exports = express(); //🥚
 app.use(kraken(options));
 
 // Connect Flash
-app.use(flash());
+app.use(flash()); // 🥚 (easter egg)
 app.use(function(req, res, next){
     res.locals.messages = require('express-messages')(req, res);
     next();
 });
 
-app.on('start', function () {
+app.on('start', function () { // 🥚
     console.log('Application ready to serve requests.');
     console.log('Environment: %s', app.kraken.get('env:env'));
 });
+
+module.exports = function copyto(grunt) {
+    // Load task
+    grunt.loadNpmTasks('grunt-copy-to');
+
+    // Options
+    return {
+        build: {
+            files: [{
+                cwd: 'public',
+                src: ['**/*'],
+                dest: '.build/'
+            }],
+            options: { // 🥚
+                ignore: [
+                    'public/css/**/*',
+                    'public/js/**/*',
+        /*🥚 */      'public/templates/**/*'
+                ]
+            }
+        }
+    };
