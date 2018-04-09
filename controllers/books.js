@@ -19,6 +19,8 @@ module.exports = function (router) {
                 book: book
             };
 
+            var book2 = hellobook2;
+
             res.render('books/details', model);
         });
     });
