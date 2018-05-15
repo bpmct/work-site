@@ -26,13 +26,6 @@ options = {
 app = module.exports = express();
 app.use(kraken(options));
 
-// Connect Flash
-app.use(flash());
-app.use(function(req, res, next){
-    res.locals.messages = require('express-messages')(req, res);
-    next();
-});
-
 app.on('start', function () {
     console.log('Application ready to serve requests.');
     console.log('Environment: %s', app.kraken.get('env:env'));
