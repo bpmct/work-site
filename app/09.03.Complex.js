@@ -66,8 +66,6 @@ Complex.prototype.equals = function(that) {
 // Their names are uppercase to indicate that they are constants.
 // (In ECMAScript 5, we could actually make these properties read-only.)
 Complex.ZERO = new Complex(0,0);
-Complex.ONE = new Complex(1,0);
-Complex.I = new Complex(0,1);
 
 // This class method parses a string in the format returned by the toString
 // instance method and returns a Complex object or throws a TypeError.
