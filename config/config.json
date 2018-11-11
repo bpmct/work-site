@@ -3,8 +3,8 @@
 
     "express": {
         "view cache": false,
-        "view engine": "js",
-        "views": "path:./.build/templates"
+        "view engine": "ts",
+        "views": "path:./.build/templates",
     },
 
 
