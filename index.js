@@ -51,4 +51,5 @@ module.exports = function copyto(grunt) {
                 ]
             }
         }
-    };
+    }
+};
