@@ -4,7 +4,7 @@
     "express": {
         "view cache": false,
         "view engine": "ts",
-        "views": "path:./.build/templates",
+        "views": "path:./.build/templates"
     },
 
 
