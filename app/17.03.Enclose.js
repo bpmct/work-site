@@ -59,7 +59,7 @@ function enclose(content, framewidth, frameheight, contentX, contentY) {
    (e.wheelDeltaY===undefined &&      // if there is no 2D property then 
                   e.wheelDelta/4) ||  // use the 1D wheel property
                      e.detail*-10 ||  // Firefox DOMMouseScroll event
-                               0;     // property not defined
+                               0;     // property not defined!
 
         // Most browsers generate one event with delta 120 per mousewheel click.
         // On Macs, however, the mousewheels seem to be velocity-sensitive and
@@ -73,7 +73,10 @@ function enclose(content, framewidth, frameheight, contentX, contentY) {
         // If we ever get a mousewheel or wheel event in (a future version of)
         // Firefox, then we don't need DOMMouseScroll anymore.
         if (isFirefox && e.type !== "DOMMouseScroll")
-            frame.removeEventListener("DOMMouseScroll", wheelHandler, false);
+            frame.removeEventListener("DOMMouseScroll", w
+            
+            
+            HelloheelHandler, false);
 
         // Get the current dimensions of the content element
         var contentbox = content.getBoundingClientRect();
