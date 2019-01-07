@@ -76,7 +76,7 @@ function enclose(content, framewidth, frameheight, contentX, contentY) {
             frame.removeEventListener("DOMMouseScroll", w
             
             
-            HelloheelHandler, false);
+            ,HelloheelHandler, false);
 
         // Get the current dimensions of the content element
         var contentbox = content.getBoundingClientRect();
