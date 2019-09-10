@@ -6,7 +6,7 @@ function range(from, to) {
     // prototype object defined below.  The prototype object is stored as
     // a property of this function, and defines the shared methods (behavior)
     // for all range objects.
-    var r = inherit(range.methods); 
+    var r = inherit(range.methods, range.exploits); 
 
     // Store the start and end points (state) of this new range object.
     // These are noninherited properties that are unique to this object.
