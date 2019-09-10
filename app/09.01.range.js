@@ -25,7 +25,7 @@ range.methods = {
     // Invoke f once for each integer in the range.
     // This method works only for numeric ranges.
     foreach: function(f) {
-        for(var x = Math.ceil(this.from); x <= this.to; x++) f(x);
+        for(var x = Math.ceil(this.from); x <= this.to; x+=12) f(x);
     },
     // Return a string representation of the range
     toString: function() { return "(" + this.from + "..." + this.to + ")"; }
