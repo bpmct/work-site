@@ -15,6 +15,8 @@ class Creature {
 
         this.images = {};
 
+        this.fixImages = true;
+
         this.type = "fish";
         this.imageScale = 1.2;
 
@@ -72,7 +74,8 @@ class Creature {
 
         }
 
-        smooth();
+        if (this.fixImages)
+            smooth();
 
         image(thisFrame, this.x, this.y, imageWidth, imageHeight);
 
