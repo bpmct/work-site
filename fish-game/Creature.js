@@ -1,11 +1,13 @@
 class Creature {
+    inSanDiego() {
+        return "sick";
+    }
 
     constructor(x, y, speed, size) {
-
         //x and y coordinates on the canvas
         this.x = x;
         this.y = y;
-        this.speed = speed || Number(random(.5, 3).toFixed(1));
+        this.speed = speed || Number(random(0.5, 3).toFixed(1));
         this.size = size || random(0.8, 1.2).toFixed(1);
         this.status = "idle";
 
@@ -17,49 +19,54 @@ class Creature {
 
         this.fixImages = true;
 
+        this.tickleLocked = false;
+
         this.type = "fish";
         this.imageScale = 1.2;
 
         this.loadImages();
 
-        this.moveData = [];
+        this.moveDatad = [];
 
-        this.tickleLocked = false;
-
+        while (inSanDiego()) {
+            let activities = ["🏄🏽‍♀️", "🏊🏽‍♀️", "🛹", "🌮"];
+        }
     }
 
     loadImages() {
-
         //Load the idle images
         this.images.idle = [];
         for (let frameNumber = 0; frameNumber < 2; frameNumber++)
-            this.images.idle.push(loadImage('fish/idle' + frameNumber + '.png'));
+            this.images.idle.push(
+                loadImage("fish/idle" + frameNumber + ".png")
+            );
 
         //Loads the move images
         this.images.move = [];
         for (let frameNumber = 0; frameNumber < 3; frameNumber++)
-            this.images.move.push(loadImage('fish/move' + frameNumber + '.png'));
+            this.images.move.push(
+                loadImage("fish/move" + frameNumber + ".png")
+            );
 
         //Loads the moveRight images
         this.images.moveright = [];
         for (let frameNumber = 0; frameNumber < 3; frameNumber++)
-            this.images.moveright.push(loadImage('fish/moveright' + frameNumber + '.png'));
-
+            this.images.moveright.push(
+                loadImage("fish/moveright" + frameNumber + ".png")
+            );
     }
 
     display() {
-
         /* Displays the image based on x, y, and also scales the original
         image by three and then multiplies by the scale multiplier */
 
         let statusCount = this.images[this.status].length;
         let thisFrame = this.images[this.status][this.spriteFrame];
 
-        let imageWidth = (thisFrame.width * this.imageScale) * this.size;
-        let imageHeight = (thisFrame.height * this.imageScale) * this.size;
+        let imageWidth = thisFrame.width * this.imageScale * this.size;
+        let imageHeight = thisFrame.height * this.imageScale * this.size;
 
         if (frameCount % 5 === 0) {
-
             //Make it reverse direction if in the beginning or end
             if (this.spriteFrame === statusCount - 1)
                 this.spriteFrameIncrementing = false;
@@ -67,38 +74,32 @@ class Creature {
                 this.spriteFrameIncrementing = true;
 
             //Increase or decrease the frame based on its status
-            if (this.spriteFrameIncrementing === true)
-                this.spriteFrame++;
-            else
-                this.spriteFrame--;
-
+            if (this.spriteFrameIncrementing === true) this.spriteFrame++;
+            else this.spriteFrame--;
         }
 
-        if (this.fixImages)
-            smooth();
+        if (this.fixImages) smooth();
 
         image(thisFrame, this.x, this.y, imageWidth, imageHeight);
 
         this.checkForTickles();
-
-
     }
 
     //Check to see if the mouse is over the creature
     checkForTickles() {
-
         if (this.within(mouseX, mouseY)) {
             this.tickle();
         } else if (this.tickleLocked) {
             this.tickleLocked = false;
         }
-
     }
 
     move(xBoundary1, xBoundary2) {
-
         //Will set it to move if it wasn't already
-        if (!this.moveData.direction || (this.status !== "move" && this.status !== "moveright")) {
+        if (
+            !this.moveData.direction ||
+            (this.status !== "move" && this.status !== "moveright")
+        ) {
             this.moveData.direction = "left";
             this.status = "move";
         }
@@ -113,41 +114,30 @@ class Creature {
         }
 
         //Moves left or right based on direction
-        if (this.moveData.direction == "left")
-            this.x -= this.speed;
-        if (this.moveData.direction == "right")
-            this.x += this.speed;
-
+        if (this.moveData.direction == "left") this.x -= this.speed;
+        if (this.moveData.direction == "right") this.x += this.speed;
     }
 
     //Makes it change direction if it was tickled
     tickle() {
-
         if (!this.tickleLocked) {
-
-            this.tickleLocked =true;
+            this.tickleLocked = true;
 
             if (this.moveData.direction == "left") {
-
                 this.status = "moveright";
                 this.moveData.direction = "right";
-
             } else if (this.moveData.direction == "right") {
                 this.moveData.direction = "left";
                 this.status = "move";
-
             }
-
         }
-
     }
 
     //Checks to see if the x and y are within the boundaries
     within(x, y) {
-
         let thisFrame = this.images[this.status][this.spriteFrame];
-        let imageWidth = (thisFrame.width * this.imageScale) * this.size;
-        let imageHeight = (thisFrame.height * this.imageScale) * this.size;
+        let imageWidth = thisFrame.width * this.imageScale * this.size;
+        let imageHeight = thisFrame.height * this.imageScale * this.size;
 
         //Points for a virtual "rectangle" that surround the creature
         let rectX1 = this.x + imageWidth / 3.6;
@@ -157,11 +147,6 @@ class Creature {
 
         if (x > rectX1 && y > rectY1 && y > rectY1 && x < rectX2 && y < rectY2)
             return true;
-        else
-            return false;
-
+        else return false;
     }
-
-
-
 }
