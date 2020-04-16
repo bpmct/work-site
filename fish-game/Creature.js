@@ -1,7 +1,4 @@
 class Creature {
-    inSanDiego() {
-        return "sick";
-    }
 
     constructor(x, y, speed, size) {
         //x and y coordinates on the canvas
@@ -19,6 +16,8 @@ class Creature {
 
         this.fixImages = true;
 
+        this.animateFresh = false;
+
         this.tickleLocked = false;
 
         this.type = "fish";
@@ -26,14 +25,16 @@ class Creature {
 
         this.loadImages();
 
-        this.moveDatad = [];
+        this.moveData = [];
 
-        while (inSanDiego()) {
-            let activities = ["🏄🏽‍♀️", "🏊🏽‍♀️", "🛹", "🌮"];
-        }
     }
 
     loadImages() {
+
+        if (this.animateFresh) {
+            //TODO: add a "super" handler to remove legacy code.
+        }
+
         //Load the idle images
         this.images.idle = [];
         for (let frameNumber = 0; frameNumber < 2; frameNumber++)
