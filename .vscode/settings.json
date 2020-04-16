@@ -1,3 +1,4 @@
 {
-    "codestream.team": "BPMCT"
+    "codestream.team": "BPMCT",
+    "editor.formatOnSave": true
 }
