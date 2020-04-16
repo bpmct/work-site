@@ -6,9 +6,15 @@ class GreenFish extends Creature {
 
         this.type = "greenfish";
 
+        //Use new or legacy animation style
+        this.animateFresh = true;
+
     }
 
     loadImages() {
+
+        if (!this.animateFresh)
+            loadAnimationProcedures();
 
         //Load the idle images
         this.images.idle = [];
@@ -24,6 +30,16 @@ class GreenFish extends Creature {
         this.images.moveright = [];
         for (let frameNumber = 0; frameNumber < 3; frameNumber++)
             this.images.moveright.push(loadImage('greenfish/moveright' + frameNumber + '.png'));
+
+    }
+
+    loadAnimationProcedures(creatureSad = false) {
+
+        if (creatureSad) {
+            this.images.moveright.push(loadImage('greenfish/wiggle_sad' + frameNumber + '.png'));
+        } else {
+            this.images.moveright.push(loadImage('greenfish/wiggle_happy' + frameNumber + '.png'));
+        }
 
     }
 
